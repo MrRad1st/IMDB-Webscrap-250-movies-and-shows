@@ -1,3 +1,5 @@
+import re
+
 def clear_spaces_before_string(s):
     if s == None or len(s) == 0:
         return
@@ -49,3 +51,9 @@ def cut_string_in_half(s):
     second_half = s[midpoint:]
     return first_half
 
+def extract_info(pattern, text):
+        match = re.search(pattern, text)
+        if match:
+            return match.group(1)
+        else:
+            return "Not found"
