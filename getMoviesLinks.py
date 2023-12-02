@@ -1,4 +1,4 @@
-import requests
+# import requests
 import time
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -30,8 +30,11 @@ for element in movies_elements:
     links_of_the_movies.append("https://www.imdb.com"+short_link)
     
     
+movies_file = open("movies_links.txt", 'w')
+for link in links_of_the_movies:
+    movies_file.write(link+'\n')
 
-
+movies_file.close()
 
 
 
