@@ -1,0 +1,13 @@
+Title: Schindler's List
+Year of release: 1993
+Age Rating: R
+Popularity Rating: 9.0
+Genres: Biography,Drama,History
+Summary: In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.
+Director: Steven Spielberg
+Writers: Thomas Keneally,Steven Zaillian
+Stars: Liam Neeson,Ralph Fiennes,Ben Kingsley
+Language: sEnglishHebrewGermanPolishLatin
+Runtime: 3 hours 15 minutes
+Budget: $22,000,000 (estimated)
+Gross Worldwide: $322,161,245

@@ -1,0 +1,13 @@
+Title: Alien
+Year of release: 1979
+Age Rating: R
+Popularity Rating: 8.5
+Genres: Horror,Sci-Fi
+Summary: The crew of a commercial spacecraft encounters a deadly lifeform after investigating an unknown transmission.
+Director: Ridley Scott
+Writers: Dan O',Bannon,Ronald Shusett
+Stars: Sigourney Weaver,Tom Skerritt,John Hurt
+Language: English
+Runtime: 1 hour 57 minutes
+Budget: $11,000,000 (estimated)
+Gross Worldwide: $106,285,522

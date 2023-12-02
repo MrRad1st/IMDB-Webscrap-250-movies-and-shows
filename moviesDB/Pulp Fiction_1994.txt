@@ -1,0 +1,13 @@
+Title: Pulp Fiction
+Year of release: 1994
+Age Rating: R
+Popularity Rating: 8.9
+Genres: Crime,Drama
+Summary: The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.
+Director: Quentin Tarantino
+Writers: Quentin Tarantino,Roger Avary
+Stars: John Travolta,Uma Thurman,Samuel L. Jackson
+Language: sEnglishSpanishFrench
+Runtime: 2 hours 34 minutes
+Budget: $8,000,000 (estimated)
+Gross Worldwide: $213,928,762
