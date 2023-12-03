@@ -3,6 +3,8 @@ from selenium import webdriver
 import time
 from functions import extract_info
 from functions import space_between_words
+import openpyxl
+
 
 movies_file = open("movies_links.txt", 'r')
 movies_links_list = []
@@ -10,8 +12,9 @@ for link in movies_file:
     movies_links_list.append(link)
 movies_file.close()
 
+all_movie_db = []
 
-for movie_link in movies_links_list:
+for movie_link in movies_links_list[:2]:
     # initialize web driver and go to the link
     driver = webdriver.Edge()
     driver.get(movie_link)
@@ -65,6 +68,19 @@ for movie_link in movies_links_list:
 
     str_img = str_img[str_img.find("https"):]
     str_img = str_img[:str_img.find(".jpg")+4]
+    
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+    print(str_img)
+    print()
+    print()
+    print()
+    print()
+    print()
 
     # print(str_img) okay shod
 
@@ -94,22 +110,44 @@ for movie_link in movies_links_list:
         if item.find("Gross worldwide") == 0:
             gross_worldwide = item[item.find("Gross worldwide")+len("Gross worldwide"):]
 
-    f = open('moviesDB/'+title+'_'+year+'.txt','w')
-    f.write("Title: "+title + '\n')
-    f.write("Year of release: " + year + '\n')
-    f.write("Age Rating: " + age_rating + '\n')
-    f.write("Popularity Rating: " + rating + '\n')
-    f.write("Genres: " + genres_out + '\n')
-    f.write("Summary: " + summary + '\n')
-    f.write("Director: " + space_between_words(director) + '\n')
-    f.write("Writers: " + space_between_words(writers) + '\n')
-    f.write("Stars: " + space_between_words(stars) + '\n')
-    f.write("Language: " + Language + '\n')
-    f.write("Runtime: " + runtime + '\n')
-    f.write("Budget: " + budget + '\n')
-    f.write("Gross Worldwide: " + gross_worldwide)
+    a = []
+    a.append(title)
+    a.append(year)
+    a.append(age_rating)
+    a.append(rating)
+    a.append(genres_out)
+    a.append(summary)
+    a.append(space_between_words(director))
+    a.append(space_between_words(writers))
+    a.append(space_between_words(stars))
+    a.append(Language)
+    a.append(runtime)
+    a.append(budget)
+    a.append(gross_worldwide)
+    a.append(str_img)
+    
+    all_movie_db.append(a)
+    
+        
+    
+    # f = open('moviesDB/'+title+'_'+year+'.txt','w')
+    # f.write("Title: "+title + '\n')
+    # f.write("Year of release: " + year + '\n')
+    # f.write("Age Rating: " + age_rating + '\n')
+    # f.write("Popularity Rating: " + rating + '\n')
+    # f.write("Genres: " + genres_out + '\n')
+    # f.write("Summary: " + summary + '\n')
+    # f.write("Director: " + space_between_words(director) + '\n')
+    # f.write("Writers: " + space_between_words(writers) + '\n')
+    # f.write("Stars: " + space_between_words(stars) + '\n')
+    # f.write("Language: " + Language + '\n')
+    # f.write("Runtime: " + runtime + '\n')
+    # f.write("Budget: " + budget + '\n')
+    # f.write("Gross Worldwide: " + gross_worldwide)
 
-    f.close()
+    # f.close()
+    
+    
     # print(space_between_words(director))
     # print(space_between_words(writers))
     # print(space_between_words(stars))
@@ -119,3 +157,29 @@ for movie_link in movies_links_list:
     # print(budget)
     # print(gross_worldwide)
 
+workbook = openpyxl.Workbook()
+sheet = workbook.active
+sheet['A1'] = 'Title'
+sheet['B1'] = 'Year of release'
+sheet['C1'] = 'Age Rating'
+sheet['D1'] = 'Popularity Rating'
+sheet['E1'] = 'Genres'
+sheet['F1'] = 'Summary'
+sheet['G1'] = 'Director'
+sheet['H1'] = 'Writers'
+sheet['I1'] = 'Stars'
+sheet['J1'] = 'Language'
+sheet['K1'] = 'Runtime'
+sheet['L1'] = 'Budget'
+sheet['M1'] = 'Gross Worldwide'
+sheet['N1'] = 'Banner'
+# sheet['O1'] = 'Demographic'
+# sheet['P1'] = 'Rating'
+
+i=2
+for a in all_movie_db:
+    for index, value in enumerate(a, start=2):
+        sheet.cell(row=i, column=index-1, value= value)
+    i+=1
+    
+workbook.save("movies_db.xlsx")
