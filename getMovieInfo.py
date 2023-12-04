@@ -4,6 +4,7 @@ import time
 from functions import extract_info
 from functions import space_between_words
 import openpyxl
+import requests
 
 
 movies_file = open("movies_links.txt", 'r')
@@ -14,7 +15,7 @@ movies_file.close()
 
 all_movie_db = []
 
-for movie_link in movies_links_list[:2]:
+for movie_link in movies_links_list[:5]:
     # initialize web driver and go to the link
     driver = webdriver.Edge()
     driver.get(movie_link)
@@ -126,6 +127,14 @@ for movie_link in movies_links_list[:2]:
     a.append(gross_worldwide)
     a.append(str_img)
     
+    response = requests.get(a[-1])
+    # Check if the request is successful
+    if response.status_code == 200:
+        # Open the file in write mode, write the image into the file, and then close it
+        file = open('images/'+title+'_'+year+'.jpg', 'wb')
+        file.write(response.content)
+        file.close()
+
     all_movie_db.append(a)
     
         
@@ -177,8 +186,8 @@ sheet['N1'] = 'Banner'
 # sheet['P1'] = 'Rating'
 
 i=2
-for a in all_movie_db:
-    for index, value in enumerate(a, start=2):
+for movie in all_movie_db:
+    for index, value in enumerate(movie, start=2):
         sheet.cell(row=i, column=index-1, value= value)
     i+=1
     
