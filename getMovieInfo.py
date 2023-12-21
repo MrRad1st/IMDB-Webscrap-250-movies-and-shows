@@ -15,10 +15,11 @@ movies_file.close()
 
 all_movie_db = []
 
-for movie_link in movies_links_list[:5]:
+for movie_link in movies_links_list:
     # initialize web driver and go to the link
     driver = webdriver.Edge()
     driver.get(movie_link)
+    driver.minimize_window()
     time.sleep(2) #in case the page elements don't fully load at first
 
     # Scroll to the bottom of the page
