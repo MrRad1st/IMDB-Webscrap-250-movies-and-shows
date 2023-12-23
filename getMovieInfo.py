@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
-from functions import extract_info
 from functions import space_between_words
 import openpyxl
 import requests
@@ -33,8 +32,6 @@ for movie_link in movies_links_list:
     title = soup.find('span', class_="hero__primary-text").text
     info = soup.find_all('a', class_="ipc-link ipc-link--baseAlt ipc-link--inherit-color")
 
-    # year = soup.find('a', class_="ipc-link ipc-link--baseAlt ipc-link--inherit-color").text
-
     print(title)
     info = info[-2:]
     for i in range(len(info)):
@@ -45,10 +42,8 @@ for movie_link in movies_links_list:
     age_rating = info[1]
 
     rating = soup.find('span', class_="sc-bde20123-1 cMEQkK").text
-    # print(rating)
     genres = soup.find_all('span', class_="ipc-chip__text")
     genres = genres[:-1]
-    # print(genres)
     for i in range(len(genres)):
         genres[i] = genres[i].text
 
@@ -56,13 +51,10 @@ for movie_link in movies_links_list:
     for genre in genres:
         genres_out = genres_out + genre + ','
     genres_out = genres_out[:-1]
-    # print(genres_out)
 
     summary = soup.find('span', class_="sc-466bb6c-1 dWufeH").text
-    # print(summary)
 
     image = soup.find('img').find_next('img')
-    # print(image)
     str_img = str(image)
     str_img = str_img[str_img.find("https")+5:]
     str_img = str_img[str_img.find("https")+5:]
@@ -84,7 +76,6 @@ for movie_link in movies_links_list:
     print()
     print()
 
-    # print(str_img) okay shod
 
     movie_info = soup.find_all('li', class_="ipc-metadata-list__item")
     for i in range(len(movie_info)):
@@ -137,35 +128,7 @@ for movie_link in movies_links_list:
         file.close()
 
     all_movie_db.append(a)
-    
-        
-    
-    # f = open('moviesDB/'+title+'_'+year+'.txt','w')
-    # f.write("Title: "+title + '\n')
-    # f.write("Year of release: " + year + '\n')
-    # f.write("Age Rating: " + age_rating + '\n')
-    # f.write("Popularity Rating: " + rating + '\n')
-    # f.write("Genres: " + genres_out + '\n')
-    # f.write("Summary: " + summary + '\n')
-    # f.write("Director: " + space_between_words(director) + '\n')
-    # f.write("Writers: " + space_between_words(writers) + '\n')
-    # f.write("Stars: " + space_between_words(stars) + '\n')
-    # f.write("Language: " + Language + '\n')
-    # f.write("Runtime: " + runtime + '\n')
-    # f.write("Budget: " + budget + '\n')
-    # f.write("Gross Worldwide: " + gross_worldwide)
 
-    # f.close()
-    
-    
-    # print(space_between_words(director))
-    # print(space_between_words(writers))
-    # print(space_between_words(stars))
-    # print(Language)
-    # print(country_of_origin)
-    # print(runtime)
-    # print(budget)
-    # print(gross_worldwide)
 
 workbook = openpyxl.Workbook()
 sheet = workbook.active
@@ -183,8 +146,6 @@ sheet['K1'] = 'Runtime'
 sheet['L1'] = 'Budget'
 sheet['M1'] = 'Gross Worldwide'
 sheet['N1'] = 'Banner'
-# sheet['O1'] = 'Demographic'
-# sheet['P1'] = 'Rating'
 
 i=2
 for movie in all_movie_db:
